@@ -212,23 +212,23 @@ pub fn syr2d(n: usize, m: usize) -> Rc<Node> {
     let mut s_ref_c = Node::new_ref("c", vec![n, n], |ij| vec![ij[0] as usize, ij[1] as usize]);
 
     // creating C[i][j] += A[j][k]*alpha*B[i][k] + B[j][k]*alpha*A[i][k];
-    let mut s_ref_a1 = Node::new_ref("a1", vec![n, m], |ijkl| {
-        vec![ijkl[3] as usize, ijkl[2] as usize]
+    let mut s_ref_a1 = Node::new_ref("a1", vec![n, m], |ikl| {
+        vec![ikl[2] as usize, ikl[1] as usize]
     });
-    let mut s_ref_b1 = Node::new_ref("b1", vec![n, m], |ijkl| {
-        vec![ijkl[0] as usize, ijkl[2] as usize]
+    let mut s_ref_b1 = Node::new_ref("b1", vec![n, m], |ikl| {
+        vec![ikl[0] as usize, ikl[1] as usize]
     });
-    let mut s_ref_b2 = Node::new_ref("b2", vec![n, m], |ijkl| {
-        vec![ijkl[3] as usize, ijkl[2] as usize]
+    let mut s_ref_b2 = Node::new_ref("b2", vec![n, m], |ikl| {
+        vec![ikl[2] as usize, ikl[1] as usize]
     });
-    let mut s_ref_a2 = Node::new_ref("a2", vec![n, m], |ijkl| {
-        vec![ijkl[0] as usize, ijkl[2] as usize]
+    let mut s_ref_a2 = Node::new_ref("a2", vec![n, m], |ikl| {
+        vec![ikl[0] as usize, ikl[1] as usize]
     });
-    let mut s_ref_c1 = Node::new_ref("c1", vec![n, n], |ijkl| {
-        vec![ijkl[0] as usize, ijkl[3] as usize]
+    let mut s_ref_c1 = Node::new_ref("c1", vec![n, n], |ikl| {
+        vec![ikl[0] as usize, ikl[2] as usize]
     });
-    let mut s_ref_c2 = Node::new_ref("c2", vec![n, n], |ijkl| {
-        vec![ijkl[0] as usize, ijkl[3] as usize]
+    let mut s_ref_c2 = Node::new_ref("c2", vec![n, n], |ikl| {
+        vec![ikl[0] as usize, ikl[2] as usize]
     });
 
     let mut l_loop_ref = loop_node!("l", 0 => |i : &[i32]| i[0]);
@@ -1156,7 +1156,7 @@ pub fn gemver(n: usize) -> Rc<Node> {
     let mut s_ref_u1 = Node::new_ref("u1", vec![n], |ij| vec![ij[0] as usize]);
     let mut s_ref_v1 = Node::new_ref("v1", vec![n], |ij| vec![ij[1] as usize]);
     let mut s_ref_u2 = Node::new_ref("u2", vec![n], |ij| vec![ij[0] as usize]);
-    let mut s_ref_v2 = Node::new_ref("v2", vec![n, n], |ij| vec![ij[1] as usize]);
+    let mut s_ref_v2 = Node::new_ref("v2", vec![n], |ij| vec![ij[1] as usize]);
     let mut s_ref_a2 = Node::new_ref("a2", vec![n, n], |ij| vec![ij[0] as usize, ij[1] as usize]);
 
     // creating x[i] = x[i] + beta * A[j][i] * y[j]
@@ -1174,7 +1174,7 @@ pub fn gemver(n: usize) -> Rc<Node> {
     let mut s_ref_w1 = Node::new_ref("w1", vec![n], |ij| vec![ij[0] as usize]);
     let mut s_ref_a4 = Node::new_ref("a4", vec![n, n], |ij| vec![ij[0] as usize, ij[1] as usize]);
     let mut s_ref_x5 = Node::new_ref("x5", vec![n], |ij| vec![ij[1] as usize]);
-    let mut s_ref_w2 = Node::new_ref("w2", vec![n, n], |ij| vec![ij[0] as usize]);
+    let mut s_ref_w2 = Node::new_ref("w2", vec![n], |ij| vec![ij[0] as usize]);
 
     // creating loops
     let mut j_loop1 = Node::new_single_loop("j", 0, ubound);

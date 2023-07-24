@@ -87,6 +87,7 @@ pub fn trace<T: LRU<usize>>(
 #[cfg(test)]
 mod test {
     use super::*;
+    use dace::loop_node;
     use stack_alg_sim::stack::LRUStack;
 
     #[test]
